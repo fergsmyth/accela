@@ -12,13 +12,18 @@ public class UserEntity {
     @GeneratedValue
     private long id;
 
+
+    @Column
+    private long userId;
+
     @Column
     private String firstName;
 
     @Column
     private String surname;
 
-    public UserEntity(String firstName, String surname) {
+    public UserEntity(Long userId, String firstName, String surname) {
+        this.userId = userId;
         this.firstName = firstName;
         this.surname = surname;
     }
@@ -29,6 +34,14 @@ public class UserEntity {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(long userId) {
+        this.userId = userId;
     }
 
     public String getFirstName() {

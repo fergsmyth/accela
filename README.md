@@ -1,5 +1,10 @@
 ## Accela coding test
 
+#### Assumptions made
+
+Provided user ids are numeric
+
+#### Stated problem
 Create a simple command line JAVA application with database access;
 Based on an input from the command line provide the following functionality;
 Provide help
