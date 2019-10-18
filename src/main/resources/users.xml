@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<users>
+    <user>
+        <firstname>Ferg</firstname>
+        <surname>Smyth</surname>
+    </user>
+    <user>
+        <firstname>Alan</firstname>
+        <surname>Jones</surname>
+    </user>
+    <user>
+        <firstname>Mark</firstname>
+        <surname>Peters</surname>
+    </user>
+    <user>
+        <firstname>John</firstname>
+        <surname>Maters</surname>
+    </user>
+</users>
