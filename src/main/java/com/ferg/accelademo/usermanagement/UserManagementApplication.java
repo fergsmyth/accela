@@ -35,6 +35,7 @@ public class UserManagementApplication implements CommandLineRunner {
 				int selectOption = scan.nextInt();
 				switch (selectOption) {
 					case 1:
+						System.out.println("Selected option: Add user");
 						if(userArgumentValidator.validateCreateUser(args)) {
 							Long userId = Long.parseLong(args[1]);
 							System.out.println(String.format("Creating user with id %d", userId));
@@ -42,6 +43,7 @@ public class UserManagementApplication implements CommandLineRunner {
 						}
 						break;
 					case 2:
+						System.out.println("Selected option: Update user");
 						if(userArgumentValidator.validateUpdateUser(args)) {
 							Long userId = Long.parseLong(args[1]);
 							System.out.println(String.format("Updating user with id %d", userId));
@@ -49,6 +51,7 @@ public class UserManagementApplication implements CommandLineRunner {
 						}
 						break;
 					case 3:
+						System.out.println("Selected option: Delete user");
 						if(userArgumentValidator.validateDeleteUser(args)) {
 							long userId = Long.parseLong(args[1]);
 							System.out.println(String.format("Deleting user with id %d", userId));
@@ -56,18 +59,21 @@ public class UserManagementApplication implements CommandLineRunner {
 						}
 						break;
 					case 4:
+						System.out.println("Selected option: Count users");
 						if (userArgumentValidator.validateListUsers(args)) {
 							System.out.println("Retrieving number of users");
 							userService.getUserCount();
 						}
 						break;
 					case 5:
+						System.out.println("Selected option: List users");
 						if (userArgumentValidator.validateCountUsers(args)) {
 							System.out.println("Retrieving list of users");
 							userService.getUsersList();
 						}
 						break;
 					case 6:
+						System.out.println("Selected option: Add user via xml");
 						if(userXMLValidator.validateUserXML(args)){
 							String filePath = args[1].trim();
 							System.out.println(String.format("Adding user from xml %s", filePath));
