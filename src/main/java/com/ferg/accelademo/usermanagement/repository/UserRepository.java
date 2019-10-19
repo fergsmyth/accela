@@ -11,4 +11,5 @@ public interface UserRepository extends CrudRepository<UserEntity, Long> {
 
     void deleteByUserId(long userId);
 
+    Iterable<UserEntity> findAllByOrderByUserIdAsc();
 }

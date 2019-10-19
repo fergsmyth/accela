@@ -12,15 +12,18 @@ public class UserEntity {
     @GeneratedValue
     private long id;
 
-
-    @Column
+    @Column(nullable = false, unique = true)
     private long userId;
 
-    @Column
+    @Column(nullable = false)
     private String firstName;
 
-    @Column
+    @Column(nullable = false)
     private String surname;
+
+    public UserEntity(){
+
+    }
 
     public UserEntity(Long userId, String firstName, String surname) {
         this.userId = userId;
