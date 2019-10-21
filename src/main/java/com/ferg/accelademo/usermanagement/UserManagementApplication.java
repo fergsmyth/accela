@@ -94,13 +94,13 @@ public class UserManagementApplication implements CommandLineRunner {
 	}
 
 	private void displayOptions() {
-		System.out.println("Enter an option between 1 and 5, passing the correct arguments separated by a space.");
+		System.out.println("Enter an option between 1 and 6, passing the correct arguments separated by a space.");
 		System.out.println("Add user			: 1 userid firstname lastname");
 		System.out.println("Update user			: 2 userid firstname lastname");
 		System.out.println("Delete user			: 3 userid");
 		System.out.println("Count users			: 4");
 		System.out.println("List users			: 5");
-		System.out.println("Add user(XML)		: 6 filepath/file.xml");
+		System.out.println("Add user(XML)			: 6 filepath/file.xml");
 	}
 
 }

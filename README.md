@@ -1,20 +1,35 @@
 ## Accela coding test
+#### How to build
+mvn clean package spring-boot:repackage
+This will produce an executable jar (user-management-0.0.1-SNAPSHOT.jar) to the /target folder.
+#### How to run application
+To list options:
+java -jar user-management-0.0.1-SNAPSHOT.jar
+```
+Enter an option between 1 and 6 and the required arguments. Each argument should be separated by a space.
+Add user        : 1 userid firstname lastname
+Update user     : 2 userid firstname lastname
+Delete user     : 3 userid
+Count users     : 4
+List users      : 5
+Add user(XML)   : 6 filepath/file.xml
+```
+Adding user example:  
+java -jar user-management-0.0.1-SNAPSHOT.jar 1 1 Ferg Smyth
 
 #### Notes/Assumptions
-
-* Application executed on a per command basis. To run multiple options, execute each separately. 
-* Database is deployed to an AKS managed instance.
-* User id is a unique field that identify users for addition, deletion etc and are not tied to the database id.
-* No logging framework has been used, instead validation outs are directed to System.out.
+* Due to time constraints and wanting to show as much breadth as possible in my work, I prioritised the application functionality over unit testing. However I do have extensive experience in this area.
+* Database is deployed to an Azure managed Postgres server.
+* User id is an additional field on the user entity for user identification and is not analogous to the database id.
+* No logging framework has been used, instead outputs are directed to System.out.
 * No Linux/Unix testing has been done for XML user upload.
-* Test files are provided in the src/main/resources for convenience.
-* No units test due to time constraints. 
-
+* A test xml file is provided in the src/main/resources as an example of the expected structure, see also xsd.
+#### Next steps
+* Add unit testing to automate testing coverage.
+* Add multiple user xml batch import.
 #### Adding via XML
-
 Below is the expected format for user xml import.
 File should end with .xml.
-
 ```xml
 <?xml version="1.0" encoding="UTF-8" ?>
 <user>
