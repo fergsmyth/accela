@@ -3,7 +3,7 @@
 mvn clean package spring-boot:repackage.  
 This will create an executable jar (user-management-0.0.1-SNAPSHOT.jar) in the /target folder.
 #### How to run application
-To list options: java -jar user-management-0.0.1-SNAPSHOT.jar
+To list options: _java -jar user-management-0.0.1-SNAPSHOT.jar_
 ```
 Enter an option between 1 and 6 and the required arguments. Each argument should be separated by a space.
 Add user        : 1 userid firstname lastname
@@ -13,7 +13,7 @@ Count users     : 4
 List users      : 5
 Add user(XML)   : 6 filepath/file.xml
 ```
-Adding user example: java -jar user-management-0.0.1-SNAPSHOT.jar 1 1 Ferg Smyth
+Adding user example: _java -jar user-management-0.0.1-SNAPSHOT.jar 1 1 Ferg Smyth_
 
 #### Notes/Assumptions
 * Due to time constraints and wanting to show as much breadth as possible in my work, I prioritised the application functionality over unit testing. However I do have extensive experience in this area.
