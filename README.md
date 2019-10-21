@@ -1,7 +1,7 @@
 ## Accela coding test
 #### How to build
 mvn clean package spring-boot:repackage.  
-This will produce an executable jar (user-management-0.0.1-SNAPSHOT.jar) to the /target folder.
+This will create an executable jar (user-management-0.0.1-SNAPSHOT.jar) in the /target folder.
 #### How to run application
 To list options: java -jar user-management-0.0.1-SNAPSHOT.jar
 ```
