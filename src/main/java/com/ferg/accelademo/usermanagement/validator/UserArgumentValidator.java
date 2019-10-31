@@ -1,28 +1,26 @@
 package com.ferg.accelademo.usermanagement.validator;
 
+import com.ferg.accelademo.usermanagement.dto.AddCommand;
 import com.ferg.accelademo.usermanagement.service.UserService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.validation.Errors;
+import org.springframework.validation.Validator;
 
 import java.util.Scanner;
 
 @Component
-public class UserArgumentValidator {
+public class UserArgumentValidator implements Validator {
 
     @Autowired
     private UserService userService;
 
+    Logger logger = LoggerFactory.getLogger(UserArgumentValidator.class);
+
     public boolean validateCreateUser(String args[]){
-        boolean isValid = false;
-        if(validateExpectedArgumentNumber(args, 4)) {
-            if(validateUserIdFormat(args[1])){
-                long userId = Long.parseLong(args[1]);
-                if(validateNoUserExists(userId)){
-                    isValid = true;
-                }
-            }
-        }
-        return isValid;
+
     }
 
     public boolean validateUpdateUser(String args[]){
@@ -60,10 +58,11 @@ public class UserArgumentValidator {
         return isValid;
     }
 
-    public boolean validateUserExists(long userId) {
+    public boolean validateUserExists(String userId) {
         boolean isValid = true;
-        if (!userService.userExists(userId)) {
-            System.out.println(String.format("User does not exist with the id %d", userId));
+        long id = Long.parseLong(userId);
+        if (!userService.userExists(id)) {
+            System.out.println(String.format("User does not exist with the id %d", id));
             isValid = false;
         }
         return isValid;
@@ -89,12 +88,31 @@ public class UserArgumentValidator {
         return isValid;
     }
 
-    private boolean validateUserIdFormat(String userId){
-        boolean isValid = true;
+    public boolean validateUserIdFormat(String userId, Errors errors){
         Scanner scanner = new Scanner(userId.trim());
         if(!scanner.hasNextLong()) {
-            System.out.println(String.format("Second argument must be a number representing the user id."));
-            isValid = false;
+            errors.reject("user.id.format");
+            logger.info("Second argument must be a number representing the user id.");
+        }
+        return !errors.hasErrors();
+    }
+
+    @Override
+    public boolean supports(Class<?> clazz) {
+        return AddCommand.class.equals(clazz);
+    }
+
+    @Override
+    public void validate(Object target, Errors errors) {
+        AddCommand command = (AddCommand) target;
+        boolean isValid = false;
+        if(validateExpectedArgumentNumber(command.getCommandArgs(), 4)) {
+            if(validateUserIdFormat(command.getCommandArgs()[1])){
+                long userId = Long.parseLong(command.getCommandArgs()[1]);
+                if(validateNoUserExists(userId)){
+                    isValid = true;
+                }
+            }
         }
         return isValid;
     }

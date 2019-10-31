@@ -3,6 +3,8 @@ package com.ferg.accelademo.usermanagement.service;
 import com.ferg.accelademo.usermanagement.dto.UserXMLDTO;
 import com.ferg.accelademo.usermanagement.entity.UserEntity;
 import com.ferg.accelademo.usermanagement.repository.UserRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +17,8 @@ import java.util.Optional;
 
 @Service
 public class UserService {
+
+    Logger logger = LoggerFactory.getLogger(UserService.class);
 
     @Autowired
     private UserRepository userRepository;
@@ -31,7 +35,7 @@ public class UserService {
             UserXMLDTO userXMLDTO = (UserXMLDTO) jaxbUnmarshaller.unmarshal(new File(filePath));
             createUser(userXMLDTO.getUserId(), userXMLDTO.getFirstName(), userXMLDTO.getSurname());
         } catch (JAXBException e) {
-            System.out.println(e.getMessage());
+            logger.error("Failed to create user from xml", e);
         }
     }
 
